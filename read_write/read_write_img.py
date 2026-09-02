@@ -10,7 +10,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-current_director = Path.cwd()
+current_director = Path.cwd() / "read_write"
 dataDir = get_data_dir()
 png_jpg_dir = dataDir / "Practice_PNGandJPG"
 dicom_dir = dataDir / "Practice_DICOM"
