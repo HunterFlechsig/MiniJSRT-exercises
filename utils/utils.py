@@ -7,6 +7,8 @@ def get_project_root() -> Path:
 
 def get_data_dir() -> Path: return get_project_root() / "data"
 
+def get_current_dir() -> Path: return Path.cwd();
+
 def get_files_of_type(directory, type):
     print(f"Searching in: {directory}")
     return list(directory.rglob(f"*.{type}"))
@@ -41,4 +43,3 @@ def write_dicom_to_png(image, dir, name):
 def write_dicom_to_jpg(image, dir, name):
     img = dicomeTo8bit(image)
     cv2.imwrite(dir / f"{name}.jpg", img)
-
