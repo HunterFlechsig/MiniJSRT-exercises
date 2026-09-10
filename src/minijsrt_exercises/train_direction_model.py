@@ -3,16 +3,16 @@ import torchvision.models as models
 from torchvision import transforms
 from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
+from pathlib import Path
 from utils.utils import ( get_data_dir, get_current_dir )
 from utils.training_utils import ( train_model, evaluate_model )
 
 device = torch.device("mps" if torch.backends.mps.is_available() else "cuda" if torch.cuda.is_available() else "cpu")
 
-data_dir = get_data_dir() / "Directions01_RGB"
+data_dir = get_data_dir() / "direction" / "Directions01_RGB"
 train_dir = data_dir / "train"
 test_dir = data_dir / "test"
-current_dir = get_current_dir()
-output_dir = current_dir / "read_write"
+output_dir = Path.cwd() / "direction"
 
 weights = models.ResNet18_Weights.DEFAULT
 num_classes = 4
@@ -66,7 +66,10 @@ train_model(
 )
 
 # save weights for later analysis
-torch.save(output_dir, 'direction_model_weights.pth')
+torch.save(
+    model.state_dict(),
+    output_dir / "direction_model_weights.pth"
+)
 
 evaluate_model(
     model=model,
