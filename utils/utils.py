@@ -7,6 +7,8 @@ def get_project_root() -> Path:
 
 def get_data_dir() -> Path: return get_project_root() / "data"
 
+def get_output_dir() -> Path: return get_project_root() / "output"
+
 def get_current_dir() -> Path: return Path.cwd();
 
 def get_files_of_type(directory, type):
